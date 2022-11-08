@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheeku</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 text-white text-l flex flex-col justify-center items-center h-screen">
+    <h1 class="text-4xl mb-5 text-cyan-200">Welcome to Cheeku, a Load Balancer<br> for an RSA keys generating
+        application
+    </h1>
+    <p class="text-2xl mb-2">Algorithm: {{algorithm}}</pre>
+    <p class="text-2xl mb-4">Response from server {{server}}</pre>
+    <pre>{{message}}</pre>
+</body>
+
+</html>

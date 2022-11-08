@@ -1,11 +1,14 @@
 import express from "express";
 import axios from "axios";
 import path from "path";
+const sprightly = require("sprightly");
 
 const [basePort, _count, algorithm] = process.argv.slice(2);
 const count = Number(_count);
 const app = express();
-
+app.engine("spy", sprightly);
+app.set("view engine", "spy");
+app.set("views", "./");
 let current = 0;
 let requestCountCurrent = 0;
 
@@ -37,7 +40,7 @@ const getServer = (options?: object): number => {
         case "random": {
             return Math.round(Math.random() * (count - 1));
         }
-        case "custom": {
+        case "url-hash": {
             const hash = hashCode(JSON.stringify(options)) % count;
             return hash < 0 ? count + hash : hash;
         }
@@ -65,7 +68,11 @@ const handler = async (req: express.Request, res: express.Response) => {
     try {
         data.url = `${server}${url}`;
         const response = await axios(data);
-        res.send(response.data);
+        res.render("index.spy", {
+            server: response.data.server + 1,
+            message: response.data.data,
+            algorithm,
+        });
     } catch (err) {
         console.log(err);
         res.status(500).send("Server error!");

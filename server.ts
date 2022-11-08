@@ -32,7 +32,10 @@ const handler =
         const { method, url, headers, body } = req;
 
         const ress = await heavyComputation();
-        res.send("Response from server " + num + ress).status(200);
+        res.json({
+            server: num,
+            data: ress,
+        }).status(200);
     };
 
 apps.forEach((app, idx) => {
