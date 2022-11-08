@@ -4,7 +4,7 @@
     "description": "",
     "main": "load_balancer.ts",
     "scripts": {
-        "watch": "nodemon load_balancer.ts"
+        "watch": "concurrently 'pnpm nodemon load_balancer.ts 3000 5' 'pnpm nodemon server.ts 3000 5'"
     },
     "keywords": [],
     "author": "",
